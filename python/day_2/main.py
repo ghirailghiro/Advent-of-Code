@@ -46,3 +46,32 @@ for line in lines:
         countValidRuns += runs['GameNumber']
 
 print(f"Part 1 Value: {countValidRuns}")
+
+
+countValidRuns = 0
+
+for line in lines:
+    red_limit = 0
+    green_limit = 0
+    blue_limit = 0
+    flagValid = True
+    runs = doLine(line)
+    for run in runs["Runs"]:
+        runSplitted = doRun(run)
+        for step in runSplitted:
+            singleStep = step.split(' ')
+            if singleStep[1] == 'red':
+                if (not isRunValid(int(singleStep[0]), red_limit)):
+                    red_limit = int(singleStep[0])
+            elif singleStep[1] == 'green':
+                if (not isRunValid(int(singleStep[0]), green_limit)):
+                    green_limit = int(singleStep[0])
+            elif singleStep[1] == 'blue':
+                if (not isRunValid(int(singleStep[0]), blue_limit)):
+                    blue_limit = int(singleStep[0])
+            else:
+                #throw exception and stop the program
+                print('Invalid color')
+    countValidRuns += red_limit*green_limit*blue_limit
+
+print(f"Part 2 Value: {countValidRuns}")
