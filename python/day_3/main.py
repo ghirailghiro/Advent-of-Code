@@ -64,24 +64,25 @@ for i in range(len(lines)):
             list_of_adjagent_num = []
             auxIntToInsertPost = ""
             auxIntToInsertPre = ""
+            if(preLine != ""):
+                for k in range(len(lines[i-1])):
+                    if(preLine != "" and lines[i-1][k].isdigit()):
+                        auxIntToInsertPre+=lines[i-1][k]
+                    elif(preLine != "" and auxIntToInsertPre!= ""):
+                        if(k+len(auxIntToInsertPre)>=lastIndex & k-len(auxIntToInsertPre) <=firstIndex):
+                            breakpoint()
+                            list_of_adjagent_num.insert(int(auxIntToInsertPre))
+                        auxIntToInsertPre = ""    
             if(postLine != ""):
                 for k in range(len(lines[i+1])):
-                    if(postLine != "" and lines[i][k].isdigit()):
-                        auxIntToInsertPost+=lines[i][k]
+                    if(postLine != "" and lines[i+1][k].isdigit()):
+                        auxIntToInsertPost+=lines[i+1][k]
                     elif(postLine != "" and auxIntToInsertPost!= ""):
                         if(k+len(auxIntToInsertPost)>=lastIndex & k-len(auxIntToInsertPost) <=firstIndex):
                             breakpoint()
                             list_of_adjagent_num.insert(int(auxIntToInsertPost))
                         auxIntToInsertPost = ""
-            if(preLine != ""):
-                for k in range(len(lines[i-1])):
-                    if(preLine != "" and lines[i][k].isdigit()):
-                        auxIntToInsertPre+=lines[i][k]
-                    elif(preLine != "" and auxIntToInsertPre!= ""):
-                        if(k+len(auxIntToInsertPre)>=lastIndex & k-len(auxIntToInsertPre) <=firstIndex):
-                            breakpoint()
-                            list_of_adjagent_num.insert(int(auxIntToInsertPre))
-                        auxIntToInsertPre = ""
+
                     
                                 
             #checkLine = preLine + postLine + lines[i][firstIndex:lastIndex]
