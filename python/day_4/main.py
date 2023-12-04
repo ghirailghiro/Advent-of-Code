@@ -8,12 +8,10 @@ list_mine = []
 for line in lines:
     line_splitted = line.replace("\n","").split("|")
     list_of_winning_num = line_splitted[0].split(": ")[1].split(" ")
+    list_to_check = line_splitted[1].split(" ")
     count_wins = 0
     for num in list_of_winning_num:
-        if(num!="" and len(num) == 1):
-            num = " "+num
-        if num!="" and num in line_splitted[1]:
-            breakpoint()
+        if num!="" and num in list_to_check:
             count_wins+=1
     
     aux_sum+= int(pow(2,(count_wins-1)))
